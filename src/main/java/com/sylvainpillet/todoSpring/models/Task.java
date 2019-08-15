@@ -2,32 +2,29 @@ package com.sylvainpillet.todoSpring.models;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @NoArgsConstructor
 @Entity
-@Table( name = "Task" )
-public class Task {
+@Table(name = "Task")
+public class Task extends Auditable<String> {
     @Getter
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY )
-    @Column( name = "id" )
+    //Should use UUID
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     @Getter
-    @NotNull
-    @Column( name = "creation_date" )
-    private Date creationDate = new Date();
-
-    @Getter
-    @Column( name = "task_description" )
+    @Setter
+    @Column(name = "task_description")
     private String taskDescription;
 
     @Getter
-    @Column( name = "achiever" )
-    @ManyToOne( optional = true, targetEntity = User.class )
+    @Setter
+//    @Column( name = "achiever" )
+    @ManyToOne(optional = true, targetEntity = User.class)
     private User achiever;
 }
