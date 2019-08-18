@@ -1,5 +1,6 @@
 package com.sylvainpillet.todoSpring.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -10,19 +11,23 @@ import java.util.Date;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties(
+        value = {"createdAt", "updatedAt"},
+        allowGetters = true
+)
 public abstract class Auditable<U> {
 
     @Getter
-    @Column(name = "creation_date")
-    @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
-    protected Date creationDate = new Date();
+    @Column(name = "created_at", nullable = false, updatable = false)
+    @CreatedDate
+    private Date createdAt;
 
     @Getter
-    @Column(name = "update_date")
-    @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
-    protected Date updateDate = new Date();
+    @Column(name = "updated_at", nullable = false)
+    @LastModifiedDate
+    private Date updatedAt;
 
 
 }

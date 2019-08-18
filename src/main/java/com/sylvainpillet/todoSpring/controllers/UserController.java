@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("users")
@@ -29,4 +30,16 @@ public class UserController {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+    @GetMapping("/{id}")
+    public Optional<User> getOneUsers(@PathVariable("id") Integer id) {
+        return userRepository.findById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteOneUser(@PathVariable("id") Integer id) {
+        userRepository.deleteById(id);
+    }
+
+
 }
