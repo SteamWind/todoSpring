@@ -22,6 +22,9 @@ public class Task extends Auditable<String> {
     @Column(name = "id")
     private Integer id;
 
+    /**
+     * Description of the task, what you should do
+     */
     @Getter
     @Setter
     @NotNull
@@ -29,6 +32,10 @@ public class Task extends Auditable<String> {
     @Column(name = "task_description")
     private String taskDescription;
 
+    /**
+     * Who did this task. If null, task incomplete,
+     * if a user, task has been completed by this achiever
+     */
     @Getter
     @Setter
     @ManyToOne(optional = true, targetEntity = User.class)

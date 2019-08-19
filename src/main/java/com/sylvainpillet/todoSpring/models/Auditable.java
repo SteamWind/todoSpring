@@ -17,17 +17,22 @@ import java.util.Date;
 )
 public abstract class Auditable<U> {
 
+    /**
+     * Creation timestamp
+     */
     @Getter
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreatedDate
     private Date createdAt;
 
+    /**
+     * Update timestamp
+     */
     @Getter
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_at", nullable = false)
     @LastModifiedDate
     private Date updatedAt;
-
 
 }

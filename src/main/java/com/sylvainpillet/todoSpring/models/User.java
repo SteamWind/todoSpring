@@ -15,6 +15,9 @@ public class User {
     @Column( name = "id" )
     private Integer id;
 
+    /**
+     * The full name of the user
+     */
     @Getter
     @Column( name = "name" )
     private String name;
